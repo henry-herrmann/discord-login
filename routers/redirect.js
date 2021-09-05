@@ -1,5 +1,5 @@
 const express = require("express");
-const axios = require("axios")
+const axios = require("node")
 const router = express.Router();
 
 router.get("/", async (req, res) =>{
@@ -7,14 +7,7 @@ router.get("/", async (req, res) =>{
 
     const response = await axios({
         method: "post",
-        url: "https://discord.com/api/oauth2/token",
-        data: {
-            client_id: '884131363228356669',
-            client_secret: 'FP8_yZGbSXZbiGUlkxP2ZRboN1QaBFFT',
-            grant_type: 'authorization_code',
-            code: req.query.code,
-            redirect_uri: "https://google.com"
-        },
+        url: `https://discord.com/api/oauth2/token?client_id?=884131363228356669?client_secret=FP8_yZGbSXZbiGUlkxP2ZRboN1QaBFFT?grant_type=authorization_code?code=${req.query.code}?redirect_uri=google.com`,
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
     })
     console.log(response)
