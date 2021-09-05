@@ -1,5 +1,5 @@
 const express = require("express");
-const axios = require("node")
+const axios = require("axios")
 const router = express.Router();
 
 router.get("/", async (req, res) =>{
