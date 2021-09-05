@@ -18,6 +18,7 @@
   "homepage": "https://github.com/henry-herrmann/discord-login#readme",
   "dependencies": {
     "axios": "^0.21.3",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "node-fetch": "^3.0.0"
   }
 }

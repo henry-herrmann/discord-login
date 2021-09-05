@@ -1,16 +1,27 @@
 const express = require("express");
-const axios = require("axios")
+const fetch = require("node-fetch")
 const router = express.Router();
 
 router.get("/", async (req, res) =>{
     if(req.query == undefined || req.query == null) return;
 
-    const response = await axios({
-        method: "post",
-        url: `https://discord.com/api/oauth2/token?client_id?=884131363228356669?client_secret=FP8_yZGbSXZbiGUlkxP2ZRboN1QaBFFT?grant_type=authorization_code?code=${req.query.code}?redirect_uri=google.com`,
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    const data = {
+        client_id: "884131363228356669",
+        client_secret: "FP8_yZGbSXZbiGUlkxP2ZRboN1QaBFFT",
+        grant_type: "authorization_code",
+        redirect_uri: "https://google.com",
+        code: req.query.code
+    }
+    const response = await fetch('https://discord.com/api/oauth2/token', {
+        method: "POST",
+        body: new URLSearchParams(data),
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
     })
-    console.log(response)
+    const json = response.json();
+    
+    console.log(json)
     res.status(200).send("Worked")
 })
 
