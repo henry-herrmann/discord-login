@@ -7,3 +7,5 @@ router.get("/", (req, res) =>{
 
     console.log(req.query.code);
 })
+
+module.exports = router;
