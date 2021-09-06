@@ -21,7 +21,7 @@ router.get("/", async (req, res) =>{
     })
     const json = await token_response.json();
 
-    console.log(json)
+    console.log(json.access_token)
     
     
     
