@@ -1,15 +1,19 @@
 import express from "express";
 import fetch from "node-fetch";
+import dotenv from "dotenv";
+
+dotenv.config();
+
 const router = express.Router();
 
 router.get("/", async (req, res) =>{
     if(req.query == undefined || req.query == null) return;
 
     const data = {
-        client_id: "884131363228356669",
-        client_secret: "FP8_yZGbSXZbiGUlkxP2ZRboN1QaBFFT",
+        client_id: process.env.CLIENT_ID,
+        client_secret: process.env.CLIENT_SECRET,
         grant_type: "authorization_code",
-        redirect_uri: "http://144.91.78.22:23456/guilds",
+        redirect_uri: process.env.REDIRECT_URI,
         code: req.query.code
     }
     const token_response = await fetch('https://discord.com/api/oauth2/token', {
@@ -27,7 +31,7 @@ router.get("/", async (req, res) =>{
         }
     })
     const guilds = await guilds_response.json();
-    const guild = guilds.find(search => search.id == "660254038901653506");
+    const guild = guilds.find(search => search.id == process.env.SERVER_ID);
 
     if(guild == undefined){
         res.status(400).send("You are not a member of the discord server.")
