@@ -1,5 +1,5 @@
 import express from "express"
-import route from "./routers/guilds.js"
+import route from "./routers/guilds.mjs"
 const app = express();
 
 app.use("/guilds", route);
