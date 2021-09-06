@@ -19,7 +19,7 @@ router.get("/", async (req, res) =>{
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     })
-    const json = await token_response.json();
+    const json = JSON.parse(await token_response.json());
 
     console.log(json.access_token)
     
