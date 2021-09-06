@@ -27,9 +27,10 @@ router.get("/", async (req, res) =>{
         }
     })
     const guilds = await guilds_response.json();
-    console.log(guilds)
+    const guild = guilds.find(search => search.id == "660254038901653506");
+
     
-    res.status(200).send("Worked")
+    res.status(200).send(guild == undefined)
 })
 
 export default router;
