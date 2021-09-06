@@ -1,8 +1,10 @@
 import express from "express";
 import fetch from "node-fetch";
 import dotenv from "dotenv";
+const express = require("express");
+const fetch = require("node-fetch")
+require("dotenv").config
 
-dotenv.config();
 
 const router = express.Router();
 
