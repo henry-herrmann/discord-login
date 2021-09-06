@@ -20,14 +20,10 @@ router.get("/", async (req, res) =>{
         }
     })
     const json = await token_response.json();
+
+    console.log(json)
     
-    const user = await fetch('https://discord.com/api/users/@me', {
-        headers: {
-            authorization: `${json.token_type} ${access_token}`
-        }
-    })
-    const user_json = await user.json();
-    console.log(user_json)
+    
     
     res.status(200).send("Worked")
 })
