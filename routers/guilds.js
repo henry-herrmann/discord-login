@@ -9,7 +9,7 @@ router.get("/", async (req, res) =>{
         client_id: "884131363228356669",
         client_secret: "FP8_yZGbSXZbiGUlkxP2ZRboN1QaBFFT",
         grant_type: "authorization_code",
-        redirect_uri: "http://144.91.78.22/guilds",
+        redirect_uri: "http://144.91.78.22/",
         code: req.query.code
     }
     const token_response = await fetch('https://discord.com/api/oauth2/token', {
