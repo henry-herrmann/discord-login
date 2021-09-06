@@ -1,7 +1,7 @@
 import express from "express"
-import route from "./routers/guilds.js"
+import route from "./routers/guild.js"
 const app = express();
 
-app.use("/guilds", route);
+app.use("/guild", route);
 
 app.listen(23456)
