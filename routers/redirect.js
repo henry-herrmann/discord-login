@@ -23,7 +23,6 @@ router.get("/", async (req, res) =>{
         console.log(json)
     })
     
-    console.log(json)
     res.status(200).send("Worked")
 })
 
