@@ -21,7 +21,13 @@ router.get("/guilds", async (req, res) =>{
     })
     const json = await token_response.json();
     
-    
+    const guilds_response = await fetch('https://discord.com/api/users/@me/guilds', {
+        headers: {
+            authorization: `${json.token_type} ${json.access_token}`
+        }
+    })
+    const guilds = await guilds_response.json();
+    console.log(guilds)
     
     res.status(200).send("Worked")
 })
