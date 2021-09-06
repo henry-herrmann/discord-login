@@ -29,8 +29,11 @@ router.get("/", async (req, res) =>{
     const guilds = await guilds_response.json();
     const guild = guilds.find(search => search.id == "660254038901653506");
 
-    
-    res.status(200).send(guild == undefined)
+    if(guild == undefined){
+        res.status(400).send("You are not a member of the discord server.")
+    }else{
+        res.status(200).send("Welcome discord server member!")
+    }
 })
 
 export default router;
