@@ -12,16 +12,22 @@ router.get("/", async (req, res) =>{
         redirect_uri: "http://144.91.78.22/",
         code: req.query.code
     }
-    const response = await fetch('https://discord.com/api/oauth2/token', {
+    const token_response = await fetch('https://discord.com/api/oauth2/token', {
         method: "POST",
         body: new URLSearchParams(data),
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     })
-    response.json().then((json) =>{
-        console.log(json)
+    const json = await token_response.json();
+    
+    const user = await fetch('https://discord.com/api/users/@me', {
+        headers: {
+            authorization: `${json.token_type} ${access_token}`
+        }
     })
+    const user_json = await user.json();
+    console.log(user_json)
     
     res.status(200).send("Worked")
 })
