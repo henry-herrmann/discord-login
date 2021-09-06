@@ -25,4 +25,4 @@ router.get("/", async (req, res) =>{
     res.status(200).send("Worked")
 })
 
-export default router = router;
+export default router;
