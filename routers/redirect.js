@@ -19,7 +19,7 @@ router.get("/", async (req, res) =>{
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     })
-    const json = response.json();
+    const json = await response.json();
     
     console.log(json)
     res.status(200).send("Worked")
