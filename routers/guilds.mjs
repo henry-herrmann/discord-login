@@ -9,16 +9,10 @@ const router = express.Router();
 router.get("/", async (req, res) =>{
     if(Object.keys(req.query).length != 0){
         console.log("yes")
-        if(req.query.code != undefined && req.query.code != null){
-            if(req.cookies.user == undefined || req.cookies.user == null){
-                res.redirect("http://202.61.201.124:23456/auth/?code=" + req.query.code);
-                return;
-            }
-        }
+        
     }
     
-
-    console.log(req.query)
+return 
 
     const access_token = req.cookies.user.split(";")[0];
     const token_type = req.cookies.user.split(";")[1];
