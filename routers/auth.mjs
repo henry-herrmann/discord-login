@@ -9,7 +9,6 @@ const router = express.Router();
 router.get("/", async (req, res) =>{
     if(Object.keys(req.query).length != 0){
         if(Object.keys(req.cookies).length == 0){
-            console.log("yes")
             const data = {
                 client_id: process.env.CLIENT_ID,
                 client_secret: process.env.CLIENT_SECRET,
@@ -31,7 +30,7 @@ router.get("/", async (req, res) =>{
             res.cookie("user", `${json.access_token};${json.token_type};${Date.now()+json.expires_in};${json.refresh_token};${json.scope}`);
             res.redirect("http://202.61.201.124:23456/guilds")
         }else if(Object.keys(req.cookies).length != 0){
-            res.clearCookie();
+            console.log("yes")
             const access_token = req.cookies.user.split(";")[0];
             const token_type = req.cookies.user.split(";")[1];
             const expires_in = req.cookies.user.split(";")[2];
