@@ -12,6 +12,8 @@ router.get("/", async (req, res) =>{
         return;
     }
 
+    console.log(req.cookies)
+
     const access_token = req.cookies.user.split(";")[0];
     const token_type = req.cookies.user.split(";")[1];
     const expires_in = req.cookies.user.split(";")[2];
@@ -21,7 +23,7 @@ router.get("/", async (req, res) =>{
         return;
     }
     
-    const guilds_response = await fetch('https://discord.com/api/users/@me/guilds', {
+    /*const guilds_response = await fetch('https://discord.com/api/users/@me/guilds', {
         headers: {
             authorization: `${token_type} ${access_token}`
         }
@@ -34,7 +36,7 @@ router.get("/", async (req, res) =>{
         res.status(400).send("You are not a member of the discord server.")
     }else{
         res.status(200).send("Welcome discord server member!")
-    }
+    }*/
 })
 
 export default router;
