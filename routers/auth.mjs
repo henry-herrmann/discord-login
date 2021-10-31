@@ -7,7 +7,7 @@ dotenv.config();
 const router = express.Router();
 
 router.get("/", async (req, res) =>{
-    if(req.query != {}){
+    if(Object.keys(req.query).length != 0){
         if(req.cookies.user == undefined || req.cookies.user == null){
             const data = {
                 client_id: process.env.CLIENT_ID,
