@@ -30,7 +30,7 @@ router.get("/", async (req, res) =>{
             res.cookie("data", `${json.access_token};${json.token_type};${Date.now()+json.expires_in};${json.refresh_token};${json.scope}`);
             res.redirect("http://202.61.201.124:23456/guilds")
         }else if(Object.keys(req.cookies).length != 0){
-            console.log(req.cookies)
+            res.clearCookie("user")
             const access_token = req.cookies.data.split(";")[0];
             const token_type = req.cookies.data.split(";")[1];
             const expires_in = req.cookies.data.split(";")[2];
