@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) =>{
     if(req.cookies.user == undefined || req.cookies.user == null){
-        res.redirect("http://202.61.201.124:23456/auth");
+        res.redirect("http://202.61.201.124:23456/auth/");
         return;
     }
 
@@ -17,7 +17,7 @@ router.get("/", async (req, res) =>{
     const expires_in = req.cookies.user.split(";")[2];
 
     if(Date.now() >= expires_in){
-        res.redirect("http://202.61.201.124:23456/auth");
+        res.redirect("http://202.61.201.124:23456/auth/");
         return;
     }
     
@@ -26,7 +26,7 @@ router.get("/", async (req, res) =>{
             authorization: `${token_type} ${access_token}`
         }
     })
-    
+
     const guilds = await guilds_response.json();
     const guild = guilds.find(search => search.id == process.env.SERVER_ID);
 
