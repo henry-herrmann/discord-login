@@ -7,10 +7,17 @@ dotenv.config();
 const router = express.Router();
 
 router.get("/", async (req, res) =>{
-    if(req.cookies.user == undefined || req.cookies.user == null){
-        res.redirect("http://202.61.201.124:23456/auth/");
-        return;
+    if(Object.keys(req.query).length != 0){
+        if(req.cookies.user == undefined || req.cookies.user == null){
+            if(req.query.code != undefined && req.query.code != null){
+                if(req.cookies.user == undefined || req.cookies.user == null){
+                    res.redirect("http://202.61.201.124:23456/auth/?code=" + req.query.code);
+                    return;
+                }
+            }
+        }
     }
+    
 
     console.log(req.cookies)
 
