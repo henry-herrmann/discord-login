@@ -18,7 +18,7 @@ router.get("/", async (req, res) =>{
     }
     
 
-    console.log(req.cookies)
+    console.log(req.quer)
 
     const access_token = req.cookies.user.split(";")[0];
     const token_type = req.cookies.user.split(";")[1];
