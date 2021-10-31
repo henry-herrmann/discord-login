@@ -1,6 +1,6 @@
 import express from "express";
 import guilds from "./routers/guilds.mjs";
-import auth from "./routers/auth";
+import auth from "./routers/auth.mjs";
 import cookieParser from "cookie-parser";
 
 const app = express();
