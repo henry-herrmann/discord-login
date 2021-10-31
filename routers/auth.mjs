@@ -61,6 +61,7 @@ router.get("/", async (req, res) =>{
             }
         }
     }else{
+        console.log("yes")
         res.redirect("https://discord.com/api/oauth2/authorize?client_id=884131363228356669&redirect_uri=http%3A%2F%2F144.91.78.22%3A23456%2Fauth&response_type=code&scope=identify%20guilds")
     }
 })
