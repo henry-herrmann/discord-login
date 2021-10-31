@@ -8,30 +8,33 @@ const router = express.Router();
 
 router.get("/", async (req, res) =>{
     if(Object.keys(req.query).length != 0){
+
+        const data = {
+            client_id: process.env.CLIENT_ID,
+            client_secret: process.env.CLIENT_SECRET,
+            grant_type: "authorization_code",
+            redirect_uri: process.env.REDIRECT_URI,
+            code: req.query.code
+        }
+
+        const token_response = await fetch('https://discord.com/api/oauth2/token', {
+            method: "POST",
+            body: new URLSearchParams(data),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        })
+
+        const json = await token_response.json();
+
+        console.log(json)
+
+        res.cookie("data", `${json.access_token};${json.token_type};${Date.now()+json.expires_in};${json.refresh_token};${json.scope}`);
+        res.redirect("http://202.61.201.124:23456/guilds")
+        return; 
         if(Object.keys(req.cookies).length == 0){
             console.log(req.query.code)
-            const data = {
-                client_id: process.env.CLIENT_ID,
-                client_secret: process.env.CLIENT_SECRET,
-                grant_type: "authorization_code",
-                redirect_uri: process.env.REDIRECT_URI,
-                code: req.query.code
-            }
-    
-            const token_response = await fetch('https://discord.com/api/oauth2/token', {
-                method: "POST",
-                body: new URLSearchParams(data),
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            })
-    
-            const json = await token_response.json();
-
-            console.log(json)
-    
-            res.cookie("data", `${json.access_token};${json.token_type};${Date.now()+json.expires_in};${json.refresh_token};${json.scope}`);
-            res.redirect("http://202.61.201.124:23456/guilds")
+            
         }else if(Object.keys(req.cookies).length != 0){
             console.log(req.cookies)
             return;
