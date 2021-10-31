@@ -7,4 +7,6 @@ const app = express();
 app.use(cookieParser());
 app.use("/guilds", route);
 
-app.listen(23456);
+app.listen(23456).then(() => {
+    console.log("[REST-API] Listening on port 23456")
+})
