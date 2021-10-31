@@ -27,15 +27,15 @@ router.get("/", async (req, res) =>{
     
             const json = await token_response.json();
     
-            res.cookie("user", `${json.access_token};${json.token_type};${Date.now()+json.expires_in};${json.refresh_token};${json.scope}`);
+            res.cookie("data", `${json.access_token};${json.token_type};${Date.now()+json.expires_in};${json.refresh_token};${json.scope}`);
             res.redirect("http://202.61.201.124:23456/guilds")
         }else if(Object.keys(req.cookies).length != 0){
             console.log("yes")
-            const access_token = req.cookies.user.split(";")[0];
-            const token_type = req.cookies.user.split(";")[1];
-            const expires_in = req.cookies.user.split(";")[2];
-            const refresh_token = req.cookies.user.split(";")[3];
-            const scope = req.cookies.user.split(";")[4];
+            const access_token = req.cookies.data.split(";")[0];
+            const token_type = req.cookies.data.split(";")[1];
+            const expires_in = req.cookies.data.split(";")[2];
+            const refresh_token = req.cookies.data.split(";")[3];
+            const scope = req.cookies.data.split(";")[4];
 
             if(Date.now() >= expires_in){
                 const data = {
@@ -55,7 +55,7 @@ router.get("/", async (req, res) =>{
         
                 const new_access_token_json = await request.json();
         
-                res.cookie("user", `${new_access_token_json.access_token};${new_access_token_json.token_type};${Date.now()+new_access_token_json.expires_in};${new_access_token_json.refresh_token};${new_access_token_json.scope}`);
+                res.cookie("data", `${new_access_token_json.access_token};${new_access_token_json.token_type};${Date.now()+new_access_token_json.expires_in};${new_access_token_json.refresh_token};${new_access_token_json.scope}`);
                 res.redirect("http://202.61.201.124:23456/guilds/")
             }else{
                 res.redirect("http://202.61.201.124:23456/guilds/") 

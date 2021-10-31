@@ -9,9 +9,9 @@ const router = express.Router();
 router.get("/", async (req, res) =>{
 
 
-    const access_token = req.cookies.user.split(";")[0];
-    const token_type = req.cookies.user.split(";")[1];
-    const expires_in = req.cookies.user.split(";")[2];
+    const access_token = req.cookies.data.split(";")[0];
+    const token_type = req.cookies.data.split(";")[1];
+    const expires_in = req.cookies.data.split(";")[2];
 
     if(Date.now() >= expires_in){
         res.redirect("http://202.61.201.124:23456/auth/");
