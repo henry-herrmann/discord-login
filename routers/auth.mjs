@@ -8,8 +8,9 @@ const router = express.Router();
 
 router.get("/", async (req, res) =>{
     if(Object.keys(req.query).length != 0){
+        console.log(req.query.code)
         if(req.cookies.user == undefined || req.cookies.user == null){
-            console.log(req.query.code)
+            
             const data = {
                 client_id: process.env.CLIENT_ID,
                 client_secret: process.env.CLIENT_SECRET,
