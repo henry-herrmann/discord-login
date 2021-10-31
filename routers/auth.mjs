@@ -8,6 +8,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) =>{
     if(Object.keys(req.query).length != 0){
+        console.log(req.cookies)
         if(Object.keys(req.cookies).length == 0){
             
             const data = {
