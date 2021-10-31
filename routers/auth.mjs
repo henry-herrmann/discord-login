@@ -37,6 +37,8 @@ router.get("/", async (req, res) =>{
             const refresh_token = req.cookies.data.split(";")[3];
             const scope = req.cookies.data.split(";")[4];
 
+            console.log(access_token, token_type, expires_in)
+
             if(Date.now() >= expires_in){
                 const data = {
                     client_id: process.env.CLIENT_ID,
