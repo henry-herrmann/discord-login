@@ -7,12 +7,7 @@ dotenv.config();
 const router = express.Router();
 
 router.get("/", async (req, res) =>{
-    if(Object.keys(req.query).length != 0){
-        console.log("yes")
-        
-    }
-    
-return 
+
 
     const access_token = req.cookies.user.split(";")[0];
     const token_type = req.cookies.user.split(";")[1];
