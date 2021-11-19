@@ -7,8 +7,6 @@ dotenv.config();
 const router = express.Router();
 
 router.get("/", async (req, res) =>{
-
-
     const access_token = req.cookies.data.split(";")[0];
     const token_type = req.cookies.data.split(";")[1];
     const expires_in = req.cookies.data.split(";")[2];
